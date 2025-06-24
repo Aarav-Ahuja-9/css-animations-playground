@@ -1,93 +1,37 @@
-root {
-    --primary-color: #00BFFF;
-    --Yellow-color: #FFD700;
-    --background-color: #2E2E2E;
-    --white-color: #f5e8e8fa;
-}
+let button = document.querySelector("button");
+let selectAnimationField = document.querySelector("#AnimationList");
+let previewBox = document.querySelector("#PreviewBox");
+// button.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log(selectAnimation);
+// })
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-transform: capitalize;
-}
 
-body {
-    background-color: var(--background-color);
-    color: var(--white-color); /* Changed color for visibility */
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+button.addEventListener("click", (e) => {
 
-}
+  e.preventDefault();
+  let animationCountValue = document.querySelector("#RepeatCount").value;
+  let vlaueOfSelectAnimation = selectAnimationField.value;
+  previewBox.setAttribute("class", "animate__animated");
+  previewBox.classList.add(vlaueOfSelectAnimation);
+  previewBox.style.animationIterationCount = animationCountValue;
+  console.log(previewBox.style);
+  if (animationCountValue == "infinite") {
+    setTimeout(() => {
+      previewBox.classList.remove(vlaueOfSelectAnimation);
+      previewBox.classList.remove("animate__animated");
+      previewBox.style.animationIterationCount = "";
+      console.log(previewBox.style.animationIterationCount);
+    }, 50000);
+  } else if (animationCountValue > 0) {
+    setTimeout(() => {
+      previewBox.classList.remove(vlaueOfSelectAnimation);
+      previewBox.classList.remove("animate__animated");
+      previewBox.style.animationIterationCount = "";
+      console.log(previewBox.style.animationIterationCount);
+    }, animationCountValue * 1000);
+  }
 
-input::placeholder {
-    color: var(--background-color);
-}
-
-#PreviewBox {
-    height: 15vh;
-    width: 40%;
-    background-color: var(--primary-color);
-    border-radius: 3vh;
-    border: 3.5px solid var(--Yellow-color);
-    font-size: 4.5vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10vh 0;
-}
-
-#PreviewBox p { /* Changed selector from .PreviewBox P */
-    width: 80%;
-    margin-left: 25px;
-}
-
-form select option {
-    color: var(--background-color);
-    font-size: 2.5vh;
-}
-
-input, select {
-    width: 100%;
-    height: 10vh;
-    color: black;
-    margin: 2vh;
-    border-radius: 2vh;
-    padding: 1vh;
-    border: 2.5px solid var(--white-color);
-    outline: 2.5px solid var(--Yellow-color);
-    background: var(--primary-color);
-
-}
-
-form {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Chrome, Safari, Edge */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-    appearance: textfield;
-}
-
-button {
-    width: 35vh;
-    height: 10vh;
-    background-color: var(--primary-color);
-    border-radius: 2vh;
-    border: 2.5px solid var(--white-color);
-    outline: 2.5px solid var(--Yellow-color);
-    font-size: 4vh;
-    cursor: pointer;
-    margin-top: 5vh;
-}
+  // console.log(vlaueOfSelectAnimation);
+  // console.log(previewBox.classList);
+});
